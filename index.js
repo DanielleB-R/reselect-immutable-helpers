@@ -28,8 +28,6 @@ export const selectorToJS = (selector) => createImmutableComparingSelector(
     (raw) => { return raw ? raw.toJS() : null }
 )
 
-export const createToJSSelector = (...args) => selectorToJS(createSelector(...args))
-
 /**
  * Creates a selector that gets a value from a selected Immutable object.
  *
