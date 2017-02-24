@@ -1,0 +1,38 @@
+{
+  "name": "reselect-immutable-helpers",
+  "version": "1.0.0",
+  "description": "A helper library to make it simpler to use Reselect with an Immutable.JS store",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint *.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielBrookRoberge/reselect-immutable-helpers.git"
+  },
+  "keywords": [
+    "reselect",
+    "immutable",
+    "redux"
+  ],
+  "author": "Daniel Brook-Roberge",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanielBrookRoberge/reselect-immutable-helpers/issues"
+  },
+  "homepage": "https://github.com/DanielBrookRoberge/reselect-immutable-helpers#readme",
+  "dependencies": {
+    "immutable": "3",
+    "reselect": "2"
+  },
+  "devDependencies": {
+    "eslint": "3.16.1",
+    "eslint-plugin-import": "2.2.0",
+    "jest": "19.0.2",
+    "mobify-code-style": "2.7.4"
+  },
+  "jest": {
+    "testRegex": "\\.?(test|spec)\\.jsx?$"
+  }
+}
