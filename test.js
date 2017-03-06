@@ -2,7 +2,7 @@
 import Immutable from 'immutable'
 import {createSelector} from 'reselect'
 
-import {selectorToJS, createGetSelector, invertSelector, createHasSelector} from './index'
+import {selectorToJS, ensureJSSelector, createGetSelector, invertSelector, createHasSelector} from './index'
 
 describe('selectorToJS', () => {
     test('creates selectors that return identical JS objects when the Immutable objects don\'t change', () => {
@@ -49,6 +49,81 @@ describe('selectorToJS', () => {
 
         expect(selector(state1)).not.toBeNull()
         expect(selector(state2)).toBeNull()
+    })
+})
+
+describe('ensureJSSelector', () => {
+    test('creates a selector that does .toJS on Immutable objects', () => {
+        const rootSelector = (state) => state
+        const selector = ensureJSSelector(createSelector(
+            rootSelector,
+            ({contents}) => contents
+        ))
+
+        const testData = {
+            test: true,
+            numbers: [1, 1, 2, 3, 5],
+            str: 'string!'
+        }
+
+        const state = {
+            contents: Immutable.fromJS(testData)
+        }
+
+        expect(selector(state)).toEqual(testData)
+    })
+
+    test('creates selectors that return identical JS objects when the Immutable objects don\'t change', () => {
+        const rootSelector = (state) => state
+        const selector = ensureJSSelector(createSelector(
+            rootSelector,
+            ({contents}) => contents
+        ))
+
+        const referenceSelector = createSelector(
+            rootSelector,
+            ({contents}) => contents.toJS()
+        )
+
+        const state1 = {
+            contents: Immutable.List([1, 2, 3])
+        }
+
+        const state2 = {
+            contents: Immutable.List([1, 2]).push(3)
+        }
+
+        expect(state1.contents).not.toBe(state2.contents)
+        expect(Immutable.is(state1.contents, state2.contents)).toBe(true)
+
+        expect(referenceSelector(state1)).not.toBe(referenceSelector(state2))
+        expect(selector(state1)).toBe(selector(state2))
+    })
+
+    test('creates selectors that return null if undefined is found', () => {
+        const rootSelector = (state) => state
+        const selector = ensureJSSelector(createSelector(
+            rootSelector,
+            ({present}) => present
+        ))
+
+        const state = {
+            absent: Immutable.List()
+        }
+
+        expect(selector(state)).toBeNull()
+    })
+
+    test('creates selectors that just return the object if it is not an Immutable object', () => {
+        const rootSelector = (state) => state
+        const selector = ensureJSSelector(createSelector(
+            rootSelector,
+            ({contents}) => contents
+        ))
+
+        ;[5, 'text', true, null, [1, 2, 3], {object: 'yes'}, {toJS: false}].forEach((contents) => {
+            expect(selector({contents})).toEqual(contents)
+        })
     })
 })
 
