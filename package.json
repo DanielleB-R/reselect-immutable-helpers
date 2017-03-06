@@ -29,7 +29,7 @@
   "devDependencies": {
     "babel-jest": "19.0.0",
     "babel-preset-es2015": "6.22.0",
-    "eslint": "3.16.1",
+    "eslint": "3.17.0",
     "eslint-plugin-import": "2.2.0",
     "jest": "19.0.2",
     "mobify-code-style": "2.7.4"
