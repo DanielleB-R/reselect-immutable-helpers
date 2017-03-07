@@ -1,6 +1,6 @@
 {
   "name": "reselect-immutable-helpers",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A helper library to make it simpler to use Reselect with an Immutable.JS store",
   "main": "index.js",
   "scripts": {
