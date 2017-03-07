@@ -2,7 +2,7 @@
 import Immutable from 'immutable'
 import {createSelector} from 'reselect'
 
-import {selectorToJS, ensureJSSelector, createGetSelector, invertSelector, createHasSelector} from './index'
+import {selectorToJS, ensureJSSelector, createPropsSelector, createGetSelector, invertSelector, createHasSelector} from './index'
 
 describe('selectorToJS', () => {
     test('creates selectors that return identical JS objects when the Immutable objects don\'t change', () => {
@@ -124,6 +124,54 @@ describe('ensureJSSelector', () => {
         ;[5, 'text', true, null, [1, 2, 3], {object: 'yes'}, {toJS: false}].forEach((contents) => {
             expect(selector({contents})).toEqual(contents)
         })
+    })
+})
+
+describe('createPropsSelector', () => {
+    test('selects all of its keys, ensuring they\'re JS objects', () => {
+        const state = {
+            text: 'string',
+            quantity: 7,
+            counts: Immutable.List([1, 3, 5, 9]),
+            item: Immutable.Map({
+                a: 'b',
+                six: 6
+            })
+        }
+
+        const propSelector = createPropsSelector({
+            text: ({text}) => text,
+            quantity: ({quantity}) => quantity,
+            counts: ({counts}) => counts,
+            item: ({item}) => item
+        })
+
+        expect(propSelector(state)).toEqual({
+            text: 'string',
+            quantity: 7,
+            counts: [1, 3, 5, 9],
+            item: {
+                a: 'b',
+                six: 6
+            }
+        })
+    })
+
+    test('returns the same object if all of the inputs are the same', () => {
+        const state = {
+            one: 1,
+            two: 2
+        }
+
+        const propSelector = createPropsSelector({
+            one: ({one}) => one,
+            two: ({two}) => two
+        })
+
+        const props1 = propSelector(state)
+        const props2 = propSelector(state)
+
+        expect(props1).toBe(props2)
     })
 })
 

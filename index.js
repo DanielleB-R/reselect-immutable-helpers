@@ -1,4 +1,4 @@
-import {createSelector, createSelectorCreator, defaultMemoize} from 'reselect'
+import {createSelector, createSelectorCreator, createStructuredSelector, defaultMemoize} from 'reselect'
 import Immutable from 'immutable'
 
 export const createImmutableComparingSelector = createSelectorCreator(
@@ -41,6 +41,14 @@ export const ensureJSSelector = (selector) => createImmutableComparingSelector(
         return item
     }
 )
+
+export const createPropsSelector = (selectors) => {
+    const wrappedSelectors = {}
+    Object.keys(selectors).forEach((key) => {
+        wrappedSelectors[key] = ensureJSSelector(selectors[key])
+    })
+    return createStructuredSelector(wrappedSelectors)
+}
 
 /**
  * Creates a selector that gets a value from a selected Immutable object.
