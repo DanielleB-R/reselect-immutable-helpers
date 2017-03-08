@@ -3,8 +3,6 @@
   "version": "1.2.0",
   "description": "A helper library to make it simpler to use Reselect with an Immutable.JS store",
   "main": "dist.js",
-  "jsnext:main": "index.js",
-  "module": "index.js",
   "scripts": {
     "prepublish": "babel index.js > dist.js",
     "lint": "eslint *.js",
