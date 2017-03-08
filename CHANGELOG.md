@@ -1,3 +1,6 @@
+# 1.2.1 (March 8, 2017):
+- Don't mention `index.js` in the package.json, for maximum safety.
+
 # 1.2.0 (March 7, 2017):
 - Transpile to dist.js and set that as the "main"
 
