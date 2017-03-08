@@ -2,10 +2,11 @@
   "name": "reselect-immutable-helpers",
   "version": "1.1.1",
   "description": "A helper library to make it simpler to use Reselect with an Immutable.JS store",
-  "main": "index.js",
+  "main": "dist.js",
   "jsnext:main": "index.js",
   "module": "index.js",
   "scripts": {
+    "prepublish": "babel index.js > dist.js",
     "lint": "eslint *.js",
     "test": "jest"
   },
@@ -29,6 +30,7 @@
     "reselect": "2"
   },
   "devDependencies": {
+    "babel-cli": "6.23.0",
     "babel-jest": "19.0.0",
     "babel-preset-es2015": "6.22.0",
     "eslint": "3.17.0",
