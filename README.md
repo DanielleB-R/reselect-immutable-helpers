@@ -2,4 +2,4 @@
 
 A library of helper functions for using Reselect with a store built with Immutable objects.
 
-This library is currently ONLY available as an ES module build in ES6. Transpiled code may be incldued in the future.
+This library is provided as a CommonJS module transpiled to ES5.
