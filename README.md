@@ -1,6 +1,5 @@
-[![npm package][npm-badge]][npm]
-
 # reselect-immutable-helpers
+[![npm package][npm-badge]][npm]
 
 A library of helper functions for using Reselect with a store built with Immutable objects.
 
