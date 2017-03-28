@@ -1,3 +1,6 @@
+# 1.2.2 (March 28, 2017):
+- Allow both Reselect 2.x and Reselect 3.x
+
 # 1.2.1 (March 8, 2017):
 - Don't mention `index.js` in the package.json, for maximum safety.
 
