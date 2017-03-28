@@ -138,3 +138,10 @@ the component's own props do) does the connected component re-render.
 This function also allows the `mapStateToProps` definition to echo in
 form the object form of the `mapDispatchToProps` parameter, which can
 improve the cleanliness and symmetry of the connection code.
+
+## Licensing
+
+MIT
+
+[npm-badge]: https://img.shields.io/npm/v/reselect-immutable-helpers.svg?style=flat-square
+[npm]: https://www.npmjs.org/package/reselect-immutable-helpers
